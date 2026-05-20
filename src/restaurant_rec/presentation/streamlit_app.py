@@ -9,6 +9,7 @@ from restaurant_rec.config.settings import get_settings
 from restaurant_rec.domain.filter_results import NoMatchResult
 from restaurant_rec.domain.preferences import Budget, UserPreferences
 from restaurant_rec.infrastructure import RestaurantRepository
+from restaurant_rec.infrastructure.llm.base import LLMError
 from restaurant_rec.services.filter_service import FilterService
 
 
@@ -96,7 +97,23 @@ def main() -> None:
             return
 
         if run_recommend:
-            orchestrator = RecommendationOrchestrator(settings=settings)
+            try:
+                orchestrator = RecommendationOrchestrator(settings=settings)
+            except LLMError as e:
+                st.error(
+                    f"⚠️ **API Key Not Configured**\n\n"
+                    f"To use recommendations, you need to add your Groq API key:\n\n"
+                    f"1. Get a free API key at https://console.groq.com/keys\n"
+                    f"2. In Streamlit Cloud: Click ⋯ → Settings → Secrets\n"
+                    f"3. Add this line:\n"
+                    f"```\n"
+                    f"GROQ_API_KEY = \"your-key-here\"\n"
+                    f"```\n"
+                    f"4. Save and refresh the app\n\n"
+                    f"**Note:** Filter preview (left) works without an API key!"
+                )
+                return
+            
             with st.spinner("Generating recommendations..."):
                 outcome = orchestrator.recommend(preferences)
 

@@ -10,5 +10,5 @@ if str(src_path) not in sys.path:
 
 from restaurant_rec.presentation.streamlit_app import main
 
-if __name__ == "__main__":
-    main()
+# Call main() to run the Streamlit app
+main()
