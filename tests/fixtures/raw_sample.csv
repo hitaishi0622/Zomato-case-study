@@ -1,0 +1,5 @@
+name,rate,votes,location,cuisines,address,approx_cost,listed_in_city
+Jalsa,4.1/5,775,Banashankari,"North Indian, Mughlai, Chinese","942, 21st Main Road, Bangalore",800,BTM
+No Rating Place,NEW,10,Indiranagar,Chinese,"100 MG Road, Bangalore",500,Indiranagar
+Bad Cost Cafe,4.0/5,20,Koramangala,Italian,"200 Koramangala, Bangalore",-,Koramangala
+Delhi Diner,4.5/5,100,Connaught Place,North Indian,"1 CP, New Delhi",1200,CP

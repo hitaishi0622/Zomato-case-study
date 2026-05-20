@@ -1,0 +1,50 @@
+[build-system]
+requires = ["setuptools>=69.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "restaurant-rec"
+version = "0.1.0"
+description = "AI-powered restaurant recommendation system (Zomato-style dataset + LLM)"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "pydantic>=2.6.0,<3",
+    "pydantic-settings>=2.2.0,<3",
+    "typer>=0.12.0,<1",
+    "python-dotenv>=1.0.0,<2",
+    "PyYAML>=6.0.0,<7",
+    "groq>=0.11.0,<1",
+    "pandas>=2.2.0,<3",
+    "huggingface-hub>=0.23.0,<1",
+    "streamlit>=1.30.0,<2",
+]
+
+[project.optional-dependencies]
+data = [
+    "pyarrow>=15.0.0,<26",
+    "datasets>=2.18.0,<4",
+]
+dev = [
+    "pytest>=8.0.0,<9",
+    "pytest-cov>=5.0.0,<6",
+]
+
+[project.scripts]
+restaurant-rec = "restaurant_rec.main:app"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
+markers = [
+    "slow: downloads from Hugging Face (network required)",
+    "integration: requires built data cache",
+    "groq_live: live Groq API call (requires GROQ_API_KEY or LLM_API_KEY in .env)",
+]
+
+[tool.coverage.run]
+source = ["restaurant_rec"]
+omit = ["tests/*"]

@@ -1,0 +1,5 @@
+# Phase 1+ data pipeline extras (pandas and huggingface-hub are in requirements.txt)
+-r requirements.txt
+pyarrow>=15.0.0,<26
+datasets>=2.18.0,<4
+huggingface-hub>=0.23.0,<1

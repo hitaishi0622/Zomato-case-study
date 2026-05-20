@@ -1,0 +1,17 @@
+# Application settings (non-secrets).
+# Secrets (e.g. LLM_API_KEY) must be set via environment variables.
+# Environment variables override values in this file.
+
+hf_dataset_id: "ManikaSaini/zomato-restaurant-recommendation"
+data_cache_path: "data/restaurants.parquet"
+
+max_candidates_for_llm: 15
+max_recommendations: 5
+
+llm_provider: "groq"
+llm_model: "llama-3.3-70b-versatile"
+llm_temperature: 0.2
+llm_timeout_sec: 60
+
+# Path to budget tier config (relative to project root)
+budget_tiers_path: "config/budget_tiers.yaml"
